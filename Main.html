@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en">
+<head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>My Personal Page</title>    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">    <style>        /* Your CSS styles */        body {            font-family: 'Arial', sans-serif;            margin: 0;            padding: 0;            background-color: #f9f9f9;        }
+        .container {            max-width: 800px;            margin: 20px auto;            padding: 20px;            text-align: left;            position: relative;            background-color: #fff;            border-radius: 10px;            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);        }
+        .social-links {            position: absolute;            top: 10px;            right: 10px;        }
+        .social-links a {            margin-right: 10px;            text-decoration: none;            color: inherit;        }
+        .language-toggle {            position: absolute;            top: 10px;            left: 10px;        }
+        h1,        h2 {            color: #333;            text-align: center;        }
+        p,        ul {            color: #666;            font-size: 1.1em;            line-height: 1.6;        }
+        strong {            color: #333;            font-weight: bold;        }
+        @media only screen and (max-width: 600px) {            .container {                padding: 10px;            }        }    </style></head>
+<body>    <div class="container">        <div class="social-links">            <a href="#" id="whatsapp-link"><i class="fab fa-whatsapp"></i></a>            <a href="#" id="linkedin-link"><i class="fab fa-linkedin"></i></a>            <a href="#" id="email-link"><i class="far fa-envelope"></i></a>        </div>
+        <button class="language-toggle" id="toggleLanguageButton">العربية</button>
+        <h1 id="title"></h1>
+        <p><strong id="name-label"></strong> <span id="name"></span></p>        <p><strong id="address-label"></strong> <span id="address"></span></p>        <p><strong id="job-label"></strong> <span id="job"></span></p>
+        <h2 id="education-heading"></h2>        <ul id="education">        </ul>
+        <h2 id="experience-heading"></h2>        <ul id="experiences">        </ul>    </div>
+    <script>        const data = {            arabic: {                title: "صفحتي الشخصية",                name: "اسمك",                address: "العنوان",                job: "مهنتك",                education: ["درجة الجامعة", "شهادة الثانوية"],                experiences: ["وصف لتجربة 1", "وصف لتجربة 2", "وصف لتجربة 3"]            },            English: {                title: "My Personal Page",                name: "Your Name",                address: "Your Address",                job: "Your Job",                education: ["University Degree", "High School Diploma"],                experiences: ["Description of Experience 1", "Description of Experience 2", "Description of Experience 3"]            }        };
+        const toggleLanguageButton = document.getElementById('toggleLanguageButton');        const title = document.getElementById('title');        const nameLabel = document.getElementById('name-label');        const addressLabel = document.getElementById('address-label');        const jobLabel = document.getElementById('job-label');        const educationHeading = document.getElementById('education-heading');        const educationList = document.getElementById('education');        const experienceHeading = document.getElementById('experience-heading');        const experiencesList = document.getElementById('experiences');
+        let isArabic = true;
+        toggleLanguageButton.addEventListener('click', function () {            isArabic = !isArabic;
+            title.textContent = isArabic ? data.arabic.title : data.english.title;            nameLabel.textContent = isArabic ? 'الاسم:' : 'Name:';            addressLabel.textContent = isArabic ? 'العنوان:' : 'Address:';            jobLabel.textContent = isArabic ? 'المهنة:' : 'Profession:';
+            educationHeading.textContent = isArabic ? 'التعليم' : 'Education';            experienceHeading.textContent = isArabic ? 'الخبرات' : 'Experience';
+            educationList.innerHTML = '';            experiencesList.innerHTML = '';
+            if (isArabic) {                data.arabic.education.forEach(edu => {                    const li = document.createElement('li');                    li.textContent = edu;                    educationList.appendChild(li);                });
+                data.arabic.experiences.forEach(exp => {                    const li = document.createElement('li');                    li.textContent = exp;                    experiencesList.appendChild(li);                });            } else {                data.english.education.forEach(edu => {                    const li = document.createElement('li');                    li.textContent = edu;                    educationList.appendChild(li);                });
+                data.english.experiences.forEach(exp => {                    const li = document.createElement('li');                    li.textContent = exp;                    experiencesList.appendChild(li);                });            }
+            // Change the text of the language toggle button            toggleLanguageButton.textContent = isArabic ? 'English' : 'العربية';        });
+        // Initialize content        title.textContent = data.arabic.title;        nameLabel.textContent = 'الاسم:';        addressLabel.textContent = 'العنوان:';        jobLabel.textContent = 'المهنة:';        educationHeading.textContent = 'التعليم';        experienceHeading.textContent = 'الخبرات';
+        data.arabic.education.forEach(edu => {            const li = document.createElement('li');            li.textContent = edu;            educationList.appendChild(li);        });
+        data.arabic.experiences.forEach(exp => {            const li = document.createElement('li');            li.textContent = exp;            experiencesList.appendChild(li);        });    </script></body>
+</html>
